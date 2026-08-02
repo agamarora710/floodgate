@@ -3,12 +3,13 @@ package main
 import (
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/agamarora710/ddos-mitigation-go/limiter"
 )
 
 func main() {
-	l := limiter.NewTokenBucketLimitor(10, 2)
+	l := limiter.NewSlidingWindowLimitor(5, 1*time.Second)
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
