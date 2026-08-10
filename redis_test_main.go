@@ -13,16 +13,16 @@ func main() {
 		Addr: "localhost:6379",
 	})
 
-	l := limiter.NewRedisFixedWindowLimitor(3, 1*time.Second, client)
+	l := limiter.NewRedisFixedWindowLimitor(5, 2*time.Second, client)
 
-	for i := 1; i <= 6; i++ {
+	for i := 1; i <= 7; i++ {
 		allowed := l.Allow("1.2.3.4")
 		fmt.Printf("Request %d: allowed=%v\n", i, allowed)
 	}
 
 	time.Sleep(2 * time.Second)
 
-	for i := 1; i <= 3; i++ {
+	for i := 1; i <= 5; i++ {
 		allowed := l.Allow("1.2.3.4")
 		fmt.Printf("Request %d: allowed=%v\n", i, allowed)
 	}
