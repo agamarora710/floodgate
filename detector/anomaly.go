@@ -73,7 +73,7 @@ func (d *Detector) IsAnamalous(ip string) bool {
 }
 func NewDetector(windowSize time.Duration, threshold float64) *Detector {
 	return &Detector{
-		stats:      map[string]*IPstats{}
+		stats:      map[string]*IPstats{},
 		windowSize: windowSize,
 		threshold:  threshold,
 	}
