@@ -14,8 +14,8 @@ Limits how many requests each IP can make, using a swappable rate-limiting algor
 - [x] Fixed window and sliding window algorithms, all swappable via a shared `Limiter` interface
 - [x] Redis-backed fixed window (atomic `INCR` + `EXPIRE`)
 - [x] Redis-backed token bucket (atomic Lua script)
-- [ ] Redis-backed sliding window
-- [ ] Traffic anomaly detection
-- [ ] Auto-blocking
+- [x] Redis-backed sliding window
+- [x] Traffic anomaly detection
+- [x] Auto-blocking
 - [ ] Attack simulator / load tester
 - [ ] Deployment
