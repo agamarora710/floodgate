@@ -14,12 +14,14 @@ func main() {
 
 	d := detector.NewDetector(10*time.Second, 3.0)
 
+	b := detector.NewBlockList()
+
 	mux := http.NewServeMux()
 	mux.HandleFunc("/ping", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("pong"))
 	})
 
-	wrapped := limiter.RateLimitMiddleware(l, d, mux)
+	wrapped := limiter.RateLimitMiddleware(l, d, b, mux)
 
 	log.Fatal(http.ListenAndServe(":8080", wrapped))
 }

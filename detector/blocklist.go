@@ -10,6 +10,12 @@ type BlockList struct {
 	mu      sync.RWMutex
 }
 
+func NewBlockList() *BlockList {
+	return &BlockList{
+		blocked: map[string]time.Time{},
+	}
+}
+
 func (b *BlockList) Block(ip string, duration time.Duration) {
 	b.mu.Lock()
 	defer b.mu.Unlock()
